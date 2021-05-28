@@ -1,0 +1,373 @@
+\chapter{Naive homotopy and the scheme of rational functions}
+%\addcontentsline{toc}{chapter}{Naive Homotopy}
+%
+Before we start of with the theorems and proofs, we go through the most important definitions and constructions of the objects which we will be using throughout the thesis. We try to define these definitions and constructions in the most ``helpful'' way, i.e. to best understand the material presented. This means that there are many equivalent definitions out there which may work better in other scenarios. These definitions are of course built on other more basic definitions in algebraic geometry, ring theory and commutative algebra. For readers wishing to understand this thesis but not having seen the definitions of objects like sheaves or schemes, we have added these in Appendix A. There is also an easy example to see how schemes ``looks'' in the appendix to help build intuition.
+%
+%
+\section{Naive homotopy}
+%
+As roughly explained in the introduction, naive homotopy theory is kind of the natural way to try to make topological homotopy theory work for schemes. We substitute the unit interval since it is not a scheme. 
+We substitute it with the closest algebro-geometric object we have, namely \(\mathbb{A}^1(k)\), the affine line over a field viewed as a scheme. We have added example \ref{Ex:Complex affine line} in Appendix A to show how to construct this scheme when the field \(k=\mathbb{C}\). 
+Example \ref{Ex:Complex affine line} also shows how this scheme works as a substitute for the unit interval (or equivalently the real line) by visualizing it as an actual line. The naive homotopy is then defined analogously to the topological homotopy we are familiar with. This was of course not precise at all, so we give the following proper definition.
+%
+\begin{definition}\label{Def:Naive Homotopy}
+%
+A naive homotopy is a morphism \(h: X \times \mathbb{A}^1 \longrightarrow Y\), such that the restrictions \(\sigma (h) := h_{|X\times \{0\}}\) is the source of the homotopy, and \(\tau (h) := h_{|X\times \{1\}}\) is the target of the homotopy. If \(X\) and \(Y\) are pointed spaces, with \(x_0\) and \(y_0\) as the respective base points, then we call \(h\) a pointed naive homotopy if its restriction to \(x_0 \times \mathbb{A}^1 = y_0\).
+%
+\begin{example}
+%
+Every monic polynomial \(P\in k^{\times}\) of degree n is naively homotopic to its leading term, i.e.
+\begin{equation*}
+    P(x) \htpy x^n \,.
+\end{equation*}
+%
+\end{example}
+%
+\end{definition}
+%
+The object we want to study in this thesis is the naive homotopy classes of k-scheme endomorphisms of the projective line. To do this we look at another scheme carrying the same information. We will also soon define what we mean with the homotopy classes. The scheme we will look at is defined as follows.
+%
+%
+\section{Pointed rational functions}
+%
+%
+\begin{definition}\label{Def:Scheme of rational functions}
+Let \(1 \leq n \in \mathbb{N}\) and \(k\) be a field. The scheme of rational function of degree \(n\) with coefficients in \(k\), denoted \(\mathcal{F}_n\), is the open subscheme of the affine space
+%
+\begin{equation*}
+    \mathbb{A}^{2n} = \text{Spec}(k[a_0,\dots,a_{n-1},b_0,\dots, b_{n-1}])
+\end{equation*} complementary to the hypersurface given by the equation 
+%
+\begin{equation*}
+    \text{res}_{n,n}(x^n+a_{n-1}x^{n-1}+\dots+a_0, b_{n-1}x^{n-1}+\dots+b_0) = 0.
+\end{equation*}
+%
+Here \(\text{res}_{n,n}\) is the resultant function, i.e. the determinant of the Sylvester matrix given by the two polynomials \(x^n+a_{n-1}x^{n-1}+\dots+a_0 \) and \(b_{n-1}x^{n-1}+\dots+b_0\). We have given the definition of the Sylvester matrix in Appendix A \ref{Def:Sylvester matrix}. By convention, \(\mathcal{F}_0=\text{Spec}(k)\)
+%
+\end{definition}
+%
+\begin{definition}\label{Def:R-point}
+%
+Let \(R\) be a \(k\)-algebra, and \(0 \leq n \in \mathbb{N}\). An \(R\)-point of \(\mathcal{F}_n\) is a pair of polynomials \((A,B) \in R[x]\times R[x]\), with
+%
+\begin{enumerate}
+    \item A is a monic polynomial of degree n
+    \item B is of degree strictly less than n
+    \item \(\text{res}_{n,n}(A,B) \in R^{\times}\), i.e it is invertible in R. 
+\end{enumerate}
+%
+Such a point will be denoted by \(\frac{A}{B}\) and will be called a pointed rational function of degree \(n\) with coefficients in \(R\). The set of R-points in \(\mathcal{F}_n\) is denoted by \(\mathcal{F}_n(R)\).
+%
+\end{definition}
+%
+\begin{remark}\label{rm:invertability}
+%
+We force the resultant to be invertible because of the fact that two polynomials share a common root if and only if the resultant of the two polynomials is zero \cite[Corollary 1.8]{Janson}. Since a k-algebra is a vector space (remember that k is a field), non-zero determinant and invertability is equivalent. 
+%
+\end{remark}
+%
+These definitions are not very easy to understand, so we give a quick example of how to find R-points, or at least how to check if a pair of polynomials is an R-point. 
+%
+\begin{example}\label{Ex:R-point}
+%
+Let \(k=\mathbb{Z}/3\) and \(n=2\). Then \(\mathcal{F}_2\) is the subscheme of \(\text{Spec}((\mathbb{Z}/3)[a_0,a_1,b_0,b_1])\) complementary to the hypersurface spanned by the equation 
+%
+\begin{equation*}
+%
+    \text{res}_{2,2}(x^2+a_1x+a_0, b_1x+b_0) = \text{det}
+%
+    \begin{bmatrix}
+    a_0 & b_0 & 0 \\
+    a_1 & b_1 & b_0  \\
+    1 & 0 & b_1
+    \end{bmatrix}
+%
+= a_0 b_1^2 + a_0 b_0 b_1 - b_0^2.
+%
+\end{equation*}
+%
+Thus \(\mathcal{F}_2 = \text{Spec}(\mathbb{Z}/3[a_1,a_0,b_1,b_0])\setminus \langle a_0 b_1^2 + a_0 b_0 b_1 - b_0^2 \rangle \).
+%
+Now we can construct an \(\mathbb{Z}/3\)-point of \(\mathcal{F}_2\) by taking \((f,g)=(x^2+2x+2, x+2)\in \mathbb{Z}/3[x] \times \mathbb{Z}/3[x]\). Here f is monic and of degree 2, and g is of degree strictly less than 2, i.e. 1. Now all we need to check is that the resultant of the two polynomials is invertible in \(\mathbb{Z}/3\), which is shown by
+%
+\begin{equation*}
+%
+    \text{res}_{2,2}(f,g)= \text{det}
+%
+    \begin{bmatrix}
+    2 & 2 & 0 \\
+    2 & 1 & 2  \\
+    1 & 0 & 1
+    \end{bmatrix}
+%
+= 2.
+%
+\end{equation*}
+%
+which of course invertible in \(\mathbb{Z}/3\) since it is a field. \\
+We conclude that \((f,g)= \frac{f}{g}\) is a \(\mathbb{Z}/3\)-point of \(\mathcal{F}_2\) i.e. a pointed rational function of degree 2 with coefficients in \(\mathbb{Z}/3\).
+%
+\end{example}
+%
+%
+\section{Projective space}
+%
+The object we want to study in this thesis is \(\mathbb{P}^1\), or rather endomorphisms of \(\mathbb{P}^1\). The reader may know this object already, and even though the definition we are using is a bit more complicated, the same intuition still works. Later in the chapter we want to say that a k-scheme endomorphism of \(\mathbb{P}^1\) contains the same information as a pointed rational function. To do so we first need to define the projective line as a scheme, and to do that we need to define \(\text{Proj}(-)\). In \ref{Def:Spectrum of a ring} in appendix A, we define \(\text{Spec}(-)\). They are not extremely different, but to create projective structure one often need a little more work and restrictions. It may be helpful for the reader to use intuition about real n-space \(\mathbb{R}^n\) and the projective n-space \(\mathbb{RP}^n\) when thinking about Spec(R)  and Proj(S). Since \(\text{Proj}(S)\) is a scheme, it locally looks like an affine scheme isomorphic to \(\text{Spec}(R)\) for some R, which is is similar to how \(\mathbb{RP}^n\) looks like \(\mathbb{R}^n\) locally. 
+%
+\begin{definition}\label{Def:Homogeneous element}
+%
+A homogeneous element in a graded ring \(S= \bigoplus S_i\) is an element only contained in one of the \(S_i\)'s.
+A homogeneous ideal of S is an ideal generated by a set of homogeneous elements. 
+%
+\end{definition}
+%
+\begin{construction}\label{Proj construction}
+%
+%
+Let S be a graded ring, with \(S=\displaystyle \bigoplus_{i\geq 0} S_i\) as the direct sum decomposition. We define \(\text{Proj}(S)\) as just a set to be the set of homogeneous prime ideals not containing the irrelevant ideal \(S_+=\displaystyle \bigoplus_{i>0}S_i\). We then augment this set with the Zariski topology to form a topological space. We do this by defining the closed subsets to be 
+%
+\begin{equation*}
+    V(A) = \{P\in \text{Proj}(S)|A\leq P\}
+\end{equation*}
+%
+where \(A\) is a homogeneous ideal of S.
+
+The final piece missing is to construct a structure sheaf. We do this by defining the local ring on every open set \(U\) to be the set of all functions 
+%
+\begin{equation*}
+%
+    f:U\longrightarrow \bigcup_{P\in U}S_{(P)}
+%
+\end{equation*}
+%
+where \(S_{(P)}\) is defined to be the subring of the ring of fractions of homogeneous elements of the same degree such that:
+%
+\begin{enumerate}
+%
+    \item \(f(P)\in S_{(P)}\)
+    \item There exist an open subset \(V \subset U\) containing \(P\) and two homogeneous elements \(s,t\) of the same degree such that for each prime ideal Q of V
+%
+    \begin{enumerate}
+        \item t is not in Q
+        \item \(f(Q) = \frac{s}{t}\).
+    \end{enumerate}
+%
+\end{enumerate}
+%
+\end{construction}
+%
+\begin{definition}\label{Def:Projective n-space}
+%
+Let \(R\) be a commutative ring with identity. We define the projective n-space over \(R\) to be the scheme
+%
+\begin{equation*}
+    \mathbb{P}_R^n = Proj(R[x_0, \dots, x_n]).
+\end{equation*}
+%
+Note that by our definition of \(\text{Proj(-)}\) we need a grading of the polynomial ring \(R[x_0,\dots,x_n]\). We define this by letting each \(x_i\) have degree \(1\) and each element \(r\in R\) to have degree \(0\). 
+%
+\end{definition}
+%
+Event though this definition is really complicated and seems fairly unmotivated, the definition formalizes \(\mathbb{P}^1\) being \(\mathbb{A}^1\) with a point at infinity. We can still use the usual intuition and notation, for example projective coordinates. Since we are looking at pointed rational functions, we define our base point to be \(\infty = [0:1] \in \mathbb{P}^1\).
+%
+
+\section{Morphisms of schemes}
+%
+By \cref{Def:Affine scheme} in Appendix A, an affine scheme consists of a set, with a topology and a sheaf of rings, i.e. a locally ringed topological space. Therefore to define a map of affine schemes, we would want it to respect these three structures. We should require it to be a map of sets, that is continuous and carrying some information about the sheaf. We also want morphisms of affine schemes \(\text{Spec}(S) \to \text{Spec}(R)\) to correspond exactly with ring morphisms \(R \to S\) since Spec(-) is a covariant functor. Since schemes are locally just affine schemes, we want general morphisms of schemes to locally act as morphisms of affine schemes. We define a morphism of schemes by the sequence of definitions given in  \cite[Def 6.2.1, 6.3.1, 6.3.3]{Vakil}. 
+
+\begin{definition}
+Let X and Y be ringed spaces. A morphism of ringed spaces \(\delta : X \to Y \) is a continuous map of the underlying topological spaces together with a map \(\mathcal{O}_{Y} \to \delta_*\mathcal{O}_{X}\) which we think of as a pullback map. 
+\end{definition}
+
+\begin{definition}
+Let X and Y be locally ringed spaces. A morphism of locally ringed spaces \(\delta : X \to Y \) is a morphism of ringed spaces such that the induced map on the stalks \(\mathcal{O}_{Y, q} \to \mathcal{O}_{X, p}\) sends the maximal ideal to the maximal ideal. 
+\end{definition}
+
+\begin{definition}
+Let X and Y be schemes. A morphism \(\delta : X \longrightarrow Y \) as locally ringed spaces is called a morphism of schemes. 
+\end{definition}
+
+This definition of a scheme morphism is not very useful for us. We are interested in morphisms between schemes over the same field \(k\), and not arbitrary schemes. 
+
+\begin{proposition}
+An S-scheme morphism \(f: X \to \mathbb{P}^1\), where \(X\) is an S-scheme, is equivalent to a choice of an invertible sheaf and two global sections \(s_0 = f^*(x_0), s_1 = f^*(x_1)\) generating the sheaf. Here \(x_0\) and \(x_1\) are homogeneous coordinates of \(\mathbb{P}^1\). 
+%
+\begin{proof}
+A good proof of this can be found in \cite[Thm 7.1]{hartshorne} or \cite[Cor 13.33]{Wedhorn-Gortz}. 
+\end{proof}
+\end{proposition}
+%
+In \cite[Remark 13.34]{Wedhorn-Gortz} Wedhorn and Görtz give a quite explicit description of the map \(f: X(k) \to \mathbb{P}_k^1(k)\) when S (as in the previous proposition) is an affine scheme over a field, i.e. \(S = \text{Spec}(k)\). As above such a morphism correspond to an invertible sheaf \(\mathcal{L}\) and two global sections \(s_0\) and \(s_1\). They argue that there exists two unique elements \(\alpha_0 , \alpha_1 \in k\) such that \(s_0(x) = \alpha_0 s_1(x)\) and \(s_1(x) = \alpha_1 s_0(x)\). Then the map \(f\) is defined by mapping \(x \mapsto [\alpha_0 : \alpha_1]\) and denoting this point by \([s_0(x) : s_1(x)]\). \\
+Now this starts to look more like a map we are familiar with from topology or from varieties. We don't want morphisms from any k-scheme X, so in the next section we describe the endomorphisms of \(\mathbb{P}^1\). 
+%
+\section{Endomorphisms of the projective line}
+%
+\begin{proposition}\label{Prop:Equivalent notions of morphisms}
+%
+A pointed k-scheme morphism  \(f: \mathbb{P}^1 \longrightarrow \mathbb{P}^1\) is equivalent to a non-negative integer \(n\) together with a pointed rational function \(\frac{A}{B}\in \mathcal{F}_n(k)\). The integer \(n\) is called the degree of \(f\), and is denoted \(\text{deg}(f)\), and the resultant \(\text{res}_{n,n}(A,B)\in k^{\times}\) is called the resultant of f, denoted \(\text{res}(f)\).
+%
+\begin{remark}\label{rm:connection between k-s morph and rat func}
+%
+This proposition tells us the connection between the usual notion of k-scheme morphisms between projective space and the previously defined \(k\)-points of \(\mathcal{F}_n\).
+%
+\end{remark}
+%
+%
+\begin{proof}
+%
+A pointed endomorphism of the projective line is defined by a rational function \(f=\frac{f_1}{f_0}:\mathbb{P}^1\longrightarrow \mathbb{P}^1\), with \(f_1\) and \(f_0\) coprime polynomials and \(f_1\) of some degree \(n\) sending \(\infty \mapsto \infty\). This we know since \(f\) is a map that sends
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\iffalse
+Since \(f(\infty)=\infty\), we may consider the restriction \(f_{|\mathbb{A}^1} = f_0 : \mathbb{A}^1 \to \mathbb{A}^1 \). This is given by a polynomial \(f_0 = A\) of some degree, say m. 
+\fi
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\([x_0:x_1] \mapsto [y_0:y_1]\) where at least one of the \(y_i\)'s are non zero, say \(y_0\). By continuity, there exist an affine neighbourhood \(U=\text{Spec(R)}\) for some ring R, such that 
+%
+\begin{equation*}
+    f: U \to \mathbb{P}^1 - \{y_0 = 0\}
+\end{equation*} \\
+%
+is a morphism where \(y_0, y_1\) are the homogeneous coordinates. We can identify \(\mathbb{P}^1 - \{y_0 = 0\}\) with \(\mathbb{A}^1\) via the maps \([a_0:a_1] \to [\frac{a_0}{a_0}:\frac{a_1}{a_0}] = [1:\frac{a_1}{a_0}] \to \frac{a_1}{a_0}\). \\
+Now we have a map 
+%
+\begin{equation*}
+    g_0 = f_{|U} : U \longrightarrow \mathbb{A}^1 \,, 
+\end{equation*} \\
+%
+where \(g_0\) is a regular function, i.e. a global section of the structure sheaf on \(U\). This is given by a fraction of homogeneous elements of \(k[x]\), i.e. a fraction \(\frac{f_1}{f_0}\) of two polynomials with \(\text{deg}(f_0) \leq \text{deg}(f_1)\). Thus when we go back to the homogeneous coordinates we have \(f(x) = [f_0(x):f_1(x)]\) for all \(x\in U\). By continuity we can extend this such that it holds for all \(x \in \mathbb{P}^1\) as long as the two polynomials never vanish at the same time, i.e. they are coprime. By abuse of notation, we can write this function \(f = [f_0:f_1] = \frac{f_1}{f_0}\). \\
+We now have a rational function of two polynomials, where they are coprime, i.e. have nonzero resultant and satisfy our degree requirement. The only thing missing is the monic condition, but since \(f_1\) has coefficients in our field \(k\), we can divide by the first coefficient to make it monic. We call the number \(n = \text{deg}(f_1)\) the degree of our rational function. and we say \(f_1 = A\) and \(f_0 = B\) to get the element \(\frac{A}{B}\in \mathcal{F}_n(k)\). 
+%
+\end{proof}
+%
+\end{proposition}
+%
+\begin{remark}
+The same argument also works if we use \(k[t]\) instead of \(k\). Thus, in the same way as above, a naive homotopy is equivalent to an element \(h(t) \in \mathcal{F}_n(k[t])\). \footnote{In other words, a naive homotopy is  a \(k[t]\)-point in \(\mathcal{F}_n\).}   
+\end{remark}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\iffalse
+%\begin{proof}
+%
+%Each morphism of schemes:
+%\begin{center}
+%    \begin{tikzcd}
+%Spec(R) \arrow[rr, "f"] &  & {Spec(k[a_0,\dots a_{n-1},b_0,\dots,b_{n-1}])\setminus H}
+%    \end{tikzcd}
+%\end{center}
+%Gives us a morphism \(\Bar{f}:k[a_0,\dots a_{n-1},b_0,\dots,b_{n-1}])\setminus H\longrightarrow R\). This morphism sends a polynomial in the \(2n\) variables to the evaluation of the polynomial in \((r_0,\dots,r_{n-1},s_0,\dots,s_{n-1})\in R^{2n}\).
+%
+%\end{proof}
+%\fi
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+\begin{definition}\label{Def:Pointed naive homotopyclass}
+%
+We say that two pointed rational functions \(f\) and \(g\) lie in the same pointed naive homotopy class if there exist a finite sequence of naive homotopies, \(\{h_i\}\) with \( 0 \leq i \leq N \), such that
+%
+\begin{equation}
+\sigma(h_0) = f, \quad \tau(h_N) = g,
+\end{equation} 
+%
+and, they are connected, i.e.
+%
+\begin{equation}
+\tau(h_i) = \sigma(h_{i+1}), \quad \forall i \in [0,N-1] .
+\end{equation}
+%
+We denote two pointed rational functions being in the same pointed naive homotopy class by \(f \htpy g\), and the set of pointed naive homotopy classes by \([\mathbb{P}^1, \mathbb{P}^1]^N\). Hence we have
+%
+\begin{equation}
+\coprod_{0\leq n} \faktor{\mathcal{F}_n(k)}{\htpy}   = [\mathbb{P}^1, \mathbb{P}^1]^N.
+\end{equation}
+%
+\end{definition}
+%
+\begin{corollary}\label{Cor:when does two functions lie in the same homotopyclass}
+Two pointed rational functions are in the same naive homotopy class if and only if they have the same degree.
+%
+\begin{proof}
+This follows directly from \cref{Prop:Equivalent notions of morphisms}.
+\end{proof}
+%
+\end{corollary}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\iffalse
+\begin{proof}
+[SKETCH] A polynomial\(A=\frac{x^n+a_{n-1}x^{n-1}+\dots+a_0}{b_0}\) is homotopic to its leading term, i.e. \(\frac{x^n}{b_0}\).
+Let \(B= b_{n-1}x^{n-1}+\dots+b_0\), then \(A \htpy \frac{x^n}{b_0} \htpy \frac{x^n}{B}\).\\
+blabla proof
+\end{proof}
+\fi
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+\begin{corollary}\label{cor:htpyclasses split degreewise}
+The set of pointed naive homotopy classes \([P^1, P^1]^N\) splits into a disjoint union of its degreewise components, i.e. 
+\begin{equation*}
+    [\mathbb{P}^1,\mathbb{P}^1]^N = \coprod_{n\geq 0}[\mathbb{P}^1,\mathbb{P}^1]_n^N.
+\end{equation*}
+\begin{proof}
+Follows directly from \cref{Cor:when does two functions lie in the same homotopyclass}.
+\end{proof}
+\end{corollary}
+%
+\begin{remark}\label{rm:reformulation to connected components}
+Later in the thesis we will see that it is more convenient to use the naive connected components of our scheme of pointed rational functions. Hence we need to define what we mean by naive connected components. We construct them generally by taking a functor from the category of k-algebras to the category of sets  
+\begin{equation*}
+    \mathcal{G}:Alg_k \longrightarrow \mathcal{S}et .
+\end{equation*}
+\end{remark}
+%
+And we define a new functor
+%
+\begin{equation*}
+    \pi_0^N\mathcal{G}:Alg_k \longrightarrow \mathcal{S}et
+\end{equation*}
+%
+which takes a k-algebra R and gives it the coequalizer of the double arrow 
+%
+\begin{equation*}
+    \mathcal{G}(R[t])\rightrightarrows \mathcal{G}(R)
+\end{equation*}
+%
+given by evaluating at \(t=0\) and \(t=1\). We define \(e_a\) the map that evaluates a function at a point a, and thus we give it the coequalizer of \(e_0, e_1\). 
+%
+Remember that the coequalizer in the category of sets is the smallest equivalence relation such that the two functions are pointwise equal in the equivalence classes generated by said relation.  \\
+This can be thought of as sending a k-algebra to the polynomial connected components on that algebra. 
+%
+%Thereby in our situation, it means they lie in the same naive homotopy class.
+A scheme can be thought of as a functor from k-algebras to sets. In fact by \cite[Prop. VI-2]{Eisenbud-Harris}, the category of k-schemes is equivalent to a full subcategory of the functor category between k-algebras and sets. If we let the \(\mathcal{G}\) be the scheme \(F_n\) interpreted as a functor, then we get the new functor
+
+\begin{equation*}
+    \pi_0^N\mathcal{F}_n : Alg_k \longrightarrow \mathcal{S}et .
+\end{equation*}
+This sends the field \(k\) to the coequalizer of  
+\begin{equation*}
+    \mathcal{F}_n(k[t])\rightrightarrows \mathcal{F}_n(k), 
+\end{equation*}
+
+i.e. the object 
+
+\begin{equation*}
+    \faktor{\mathcal{F}_n(k)}{\{ e_0(h(t)) \sim e_1(h(t)) \, | \, \forall h(t) \in \mathcal{F}_n(k[t])\}}. 
+\end{equation*}
+
+Recall that we showed that elements in \(\mathcal{F}_n(k[t])\) are naive homotopies, and hence the coequalizer becomes 
+
+\begin{equation*}
+     \faktor{\mathcal{F}_n(k)}{\{ \sigma(h) \sim \tau(h) \, | \, \forall h : \mathbb{P}^1 \times \mathbb{A}^1 \to \mathbb{P}^1\}}, 
+\end{equation*}
+which are exactly the naive homotopy classes. 
+Since we have shown that the homotopy classes of pointed rational functions split degreewise, the same proposition gives us a bijection
+\begin{corollary}\label{cor:connected components is homotopy classes}
+\begin{equation*}
+    [\mathbb{P}^1, \mathbb{P}^1]_n^N \cong (\pi_0^N\mathcal{F}_n)(k).
+\end{equation*}
+\end{corollary}
+
+%
+Intuitively this should not be that difficult to convince ourselves of. We send our field \(k\) as an algebra over itself to the  homotopy class of degree \(n\) pointed rational functions on \(k\) by our constructed functor. Since \(\mathcal{F}_n(k[t])\) consists of naive homotopies, we get our naive connected components by evaluating every naive homotopy on \(0\) and \(1\). These naive connected components are just the naive homotopy classes. By proposition \ref{Prop:Equivalent notions of morphisms} we already have that every k-scheme endomorphism of the projective line is a degree n rational function, and since they are isomorphic as sets, they will also have the same connected components i.e. naive homotopy classes. To summarize, all this does is to reformulate what it means to be a naive homotopy class. It just means that two functions live in the same homotopy class if they can be connected by a path. \footnote{This also means that paths is this space is the same as homotopies.} 
+
+%

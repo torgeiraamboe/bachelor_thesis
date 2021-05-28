@@ -1,0 +1,376 @@
+\chapter{Naive homotopy classes as a commutative monoid}
+%
+To prove that the naive homotopy classes of the pointed rational functions in fact admits a commutative monoid, we need to give it a monoid operation. We are going to do so by first constructing a monoid structure on the disjoint union scheme \(\mathcal{F}=\displaystyle \coprod_n \mathcal{F}_n\). This will induce a monoid structure on its naive connected components \((\pi_0^N\mathcal{F}_n)(k)\), which we have seen is isomorphic to \([\mathbb{P}^1,\mathbb{P}^1]^N_n\) in the end of the previous chapter. 
+
+%
+%
+
+\section{The monoid operation}
+%
+Two polynomials \(A\) and \(B\), of respective degrees \(n\) and \(m\) with no common zeroes uniquely define two polynomials \(U\) and \(V\), with respective degrees \(k\), \( l\) such that \(k < m\) and \(l < n\). These polynomials satisfy a unique Bézout-relation \(AU+BV=1\). This should feel familiar if the reader has seen some elementary number theory. The proof often uses the extended Euclidean algorithm backwards, as done in \cite[Thm 3.6.1]{hsu}. We are going to use this to construct a graded monoid structure on \(\mathcal{F}\). 
+%
+\begin{definition}\label{def:monoid operation}
+For a pointed rational function \(\frac{A}{B}\in \mathcal{F}_n(k)\) let  \(U, V \in k[x]\) be the uniquely defined polynomials such that \(AU+BV=1\). Let  \(\frac{A_1}{B_1}\in \mathcal{F}_n(k)\) and \(\frac{A_2}{B_2}\in \mathcal{F}_m(k)\) be two rational functions of respective degree \(n\) and \(m\), with Bézout relations \(A_1 U_1 + B_1 V_1 = 1\) and \(A_2 U_2 + B_2 V_2 = 1\). We define the addition \(\frac{A_1}{B_1}\oplus^N \frac{A_2}{B_2}\) to be the new function \(\frac{A_3}{B_3}\), where \(A_3\) and \(B_3\) is defined by:
+\begin{equation*}
+%
+\begin{bmatrix}
+    A_3 & -V_3 \\
+    B_3 & U_3 
+\end{bmatrix} = 
+%
+\begin{bmatrix}
+    A_1 & -V_1 \\
+    B_1 & U_1 
+\end{bmatrix}\cdot
+%
+\begin{bmatrix}
+    A_2 & -V_2 \\
+    B_2 & U_2 
+\end{bmatrix}.
+%
+\end{equation*}
+%
+We write \(\frac{A_1}{B_1}\oplus^N\frac{A_2}{B_2} = \frac{A_3}{B_3}\) . \\
+%
+\end{definition}
+%
+\begin{remark}\label{Rm:N-sums work as expected}
+By their respective Bézout relations, both the matrices on the right hand side have determinant \(1\) and hence the newly produced matrix also has determinant \(1\). \(A_3\) is monic with degree \(n+m\), since both \(A_1\) and \(A_2\) monic and the degree of \(-V_1 B_2\) is less than \(n+m = deg(A_1 A_2)\). Also just for degree reasons of the polynomials used in the definition, \(deg(B_3)\langle deg(A_3)\). Thus the new polynomials \(A_3\) and \(B_3\) do in fact form a pointed rational function \(\frac{A_3}{B_3}\) of degree \(n+m\). \\
+%
+Since matrix multiplication is associative, this new monoid law \(\oplus^N\) is also associative. %
+Note that even though we use additive notation, this operation on \(\mathcal{F}\) is not commutative. \footnote{ This is because matrix multiplication is non-commutative.} 
+\end{remark}
+ 
+%
+\begin{remark}\label{rm:induces monoid on conn components}
+%
+As said in the beginning of the chapter, this induces a monoid structure on its naive connected components, namely \((\pi_0^N\mathcal{F}_n)(k)\) and thus also on \([\mathbb{P}^1,\mathbb{P}^1]^N\) since they are isomorphic. We denote the induced monoid operation on \([\mathbb{P}^1,\mathbb{P}^1]^N\) by the same symbol, \(\oplus^N\). 
+%
+\end{remark}
+%
+Lets give a short example on how this monoid operation works.
+\begin{example}\label{Ex:Computing easy N-sums}
+Let's calculate the sum \(\frac{x}{u}\oplus^N\frac{A}{B}\), where \(a\in k^{\times}\) and \(\frac{A}{B}\in \mathcal{F}_n(k)\). \\
+
+First lets look at the Bézout relations on the rational functions. We have \(xU_1 + u V_1 = 1\), where \(\text{deg}(V_1) < \text{deg}(x) = 1 \, \implies V_1 = c, \, c \in k^{\times}\). This means that the product \(xU_1\) is constant, but \(x\) is non-constant and \(\text{deg}(U_1) < n\). Thus \(U_1 = 0\) and \(c = \frac{1}{u}\). Hence we get
+%
+\begin{align*}
+\frac{x}{a}\oplus^N\frac{A}{B} 
+&= \frac{xA - VB}{uA -UB} \\ 
+&= \frac{xA - cB}{uA} \\
+&= \frac{xA-\frac{B}{u}}{uA}. 
+\end{align*}
+%
+\end{example}
+%
+%
+\section{The Bézout matrix}
+%
+Bézout gave in the 18th century a way to form a nondegenerate symmetric matrix from two polynomials, or in our case from a pointed rational function. Translated over to algebraic geometry, he defined for every positive integer \(n\), a morphism between the scheme of degree \(n\) pointed rational functions, \(\mathcal{F}_n\), and the scheme of nondegenerate symmetric \(n\times n\)-matrices, \(\mathcal{S}_n\). 
+%
+\begin{definition}\label{def:Bezout matrix}
+%
+The Bézout matrix \(\text{Béz}_n(A,B)\) is the matrix given by the coefficients \(c_{p,q}\) in 
+%
+\begin{equation*}
+%
+    \delta_{A,B}(x,y) = \frac{A(x)B(y)-A(y)B(x)}{x-y} = \displaystyle \sum_{p,q=1}^n c_{p,q}x^{p-1}y^{q-1}.
+%
+\end{equation*}
+%
+Note that \(c_{p,q}=c_{q,p}, \forall p,q \in {1,\dots,n}\), hence \(\text{Béz}_n(A,B)\) is a symmetric matrix. 
+%It is also nondegenerate because of Bézouts formula:
+%
+It is also invertible because of Bézouts formula:
+\begin{equation*}
+%
+    \text{det}(\text{Béz}_n(A,B))=(-1)^{\frac{n(n-1)}{2}}\text{res}(A,B).
+\end{equation*}
+%
+\end{definition}
+%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\iffalse
+%\begin{definition}\label{def:Bezout form}
+%We define the Bézout form of a degree \(n\) rational function \(f=\frac{A}{B}\) to be the symmetric bilinear form over \(R^n\) who's Gram matrix is the Bézout matrix \(B_n(A,B)\). We denote this form by \(\text{Béz}_n(f)\).
+%\end{definition}
+%\fi
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{definition}
+We define the Bézout function to be the map that sends a pointed rational function to its Bézout matrix, i.e. 
+
+\begin{center}
+%
+\begin{tikzcd}
+\mathcal{F}_n(k) \arrow[rr, rightarrow, "B\Acute{e}z_n"] &  & \mathcal{S}_n(k) 
+\end{tikzcd}
+
+\begin{tikzcd}
+\quad \quad \frac{A}{B} \, \arrow[rr, rightarrow, maps to] & & 
+\text{Béz}_n(A,B).
+\end{tikzcd}
+%
+\end{center}
+\end{definition}
+%
+
+%
+The last section will be devoted to showing that the Bézout function exactly distinguishes the naive homotopy classes we want.
+%
+%
+\section{The main theorem}
+%
+The main result in this paper will be proving that the set of naive homotopy classes of k-scheme endomorphisms of the projective line is in fact a commutative monoid with the operation \(\oplus^N\) that we defined previously, i.e.
+%
+\begin{theorem}\label{thm:Main-theorem}
+\(([\mathbb{P}^1, \mathbb{P}^1]^N,\oplus^N)\) is commutative. 
+\end{theorem}
+%
+We split the proof of the main theorem into smaller lemmas. In short terms, we will prove that the Bézout function is an isomorphism on the naive connected components, and then prove that the scheme of non-degenerate symmetric matrices \(\mathcal{S}_n\) is a commutative monoid with direct sum as the operation. Direct sum of matrices N and M works by letting \(N\oplus M\) be the block diagonal matrix with N in the first block and M in the second. We will also use the naive connected components of \(\mathcal{S}_n\), i.e. \((\pi_0^N\mathcal{S}_n)(k)\), and these are constructed in exactly the same way as \((\pi_0^N\mathcal{F}_n)(k)\). We show in the last lemma that \(\mathcal{S}_n\) is commutative up to naive homotopy.\\
+But first we define some notation we will be using. Let n be a positive integer and \(a_i \in K^{\times}\), we define
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\iffalse
+% Cazanaves def
+%\begin{equation*}\label{def:\langle a...a\rangle sym diag form}
+%
+%\langle a_1, \dots, a_n\rangle  \text{to be the diagonal symmetric bilinear form }  \langle a_i\rangle \oplus \dots \oplus \langle a_n \rangle 
+%
+%\end{equation*}
+%
+%\fi
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% My Def
+
+\begin{equation*}\label{def:diagonal matrix <a..a> }
+%
+\langle a_1, \dots, a_n \rangle  \text{ to be the diagonal matrix } \langle a_ i\rangle \oplus \dots \oplus \langle   a_n \rangle  ,
+%
+\end{equation*}
+%
+which is the matrix with \(a_i\) on the \(i,i\)-th place, and zero everywhere else. We also define 
+%
+
+\begin{equation*}\label{def:pointed rational function [a...a]}
+[a_1,\dots,a_n] \text{ to be the pointed rational function } \frac{x}{a_1}\oplus^N \dots \oplus^N \frac{x}{a_n}.
+\end{equation*}
+%
+\begin{lemma}\label{Lm:homotopy-lemma in S}
+%
+Let \(n\) be a positive integer. Then for any nondegenerate symmetric matrix \(S \in \mathcal{S}_n(k)\) there exists units \(a_1, \dots ,a_n\) s.t. \(S\) is homotopic to the diagonal matrix \(\langle a_1, \dots, a_n\rangle \).
+%
+\begin{proof} 
+Any matrix \(S \in \mathcal{S}_n(k)\) is congruent to a diagonal matrix \(A\) by a matrix \(P\in SL_n(k)\). We can decompose \(P\) into elementary matrices and this forms our homotopy from \(S\) to a diagonal matrix. Then we get the units \(a_i = A_{i,i}\). \\
+%
+\end{proof}
+%
+\end{lemma}
+%
+\begin{lemma}\label{Lm:homotopy-lemma in F}
+Let \(n\) be a positive integer. Then for any pointed rational function \(f\in \mathcal{F}_n(k)\) there exists units \(a_1, \dots, a_n\) s.t. \(f\) is homotopic to the pointed rational function \([a_1, \dots,a_n]\).
+%
+\begin{proof}
+%This point is proven by induction on the degree of the function. \\
+A rational function \(f \in \mathcal{F}_n(k)\) is tautologically equivalent to the \(\oplus^N\)-sum of some polynomials \(\frac{A_1}{u_1}, \dots , \frac{A_n}{u_n}\), where \(u_i \in k^{\times}\).\footnote{This is because of a natural continued fraction expansion that comes from the \(\oplus^N\) operation. See this expansion in \cite[Ex 3.3]{Cazanave}. The tautological sum decomposition is then the sum of the polynomials in the continued fraction expansion.} Therefore it is enough to prove the case where \(f\) is a polynomial. Every polynomial is naively homotopic to its leading term \cite[Ex 2.4]{Cazanave}, thus we can treat \(f\) as a monomial \(\frac{x^n}{u}\) where \(u\in k^{\times}\). The element \(\frac{x^n}{tx^{n-1}+u} \in \mathcal{F}_n(k[t])\) defines a naive homotopy between \(\frac{x^n}{u}\) and \(\frac{x^n}{x^{n-1}+u}\). The function \(\frac{x^n}{x^{n-1}+u}\) decomposes as the \(\oplus^N\)-sum \(x\oplus^N g\) for some \(g\in \mathcal{F}_{n-1}(k)\). From here we can repeat the process with the function \(g\), and after \(n\) steps get the decomposition we wanted.
+%
+\end{proof}
+%
+\end{lemma}
+%
+We now want to show that the Bézout function is an isomorphism. Three things need to be shown; injectivity, surjectivity and compatibility with the monoid structure.  
+%
+
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Cazanave's lemma
+%\iffalse
+%
+%\begin{lemma}\label{lm:conjugate to block matrix}
+%Let \(\frac{A}{B}\in \mathcal{F}_n(k)\) and let \(u\in k^{\times}\). \\
+%The Bézout form of \(\frac{x}{u}\oplus^{N}\frac{A}{B}\) is conjugate to the block diagonal form \(\frac{x}{u}\oplus^{N}\text{Béz}_n(A,B)\) by an element \(P\in SL_{n+1}(k)\).
+%\end{lemma}
+%
+%\fi
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% My lemma
+\begin{lemma}\label{lm:Bez respects monoid structure}
+The Bézout function respects the monoid structure on naive connected components. 
+
+\begin{proof}
+
+To show this we use the fact from lemma  \ref{Lm:homotopy-lemma in F} that any degree \(n\) rational function \(f \htpy \frac{x}{u_1}\oplus^N \dots \oplus^N \frac{x}{u_n}\) for \(u_1,\dots , u_n \in k^{\times}\).  
+%
+If we can prove that we can split off one such simple function, then we are done. Let \(u = u_1\) and \(\frac{A}{B}= \frac{x}{u_2}\oplus^N \dots \oplus^N \frac{x}{u_n}\). Then \(f \htpy \frac{x}{u} \oplus^{N} \frac{A}{B}\).
+
+By \cref{Ex:Computing easy N-sums} we know that \(\frac{x}{u}\oplus^{N}\frac{A}{B} = \frac{xA-\frac{B}{u}}{uA}\). From the construction of the Bézout form we then have:
+%
+\begin{align*}
+     \delta_{xA-\frac{B}{u}, uA}(x,y) 
+     &= \frac{(xA-\frac{B}{u})(x)(uA)(y)-(xA-\frac{B}{u})(Y)(uA)(x)}{x-y} \\
+     &= \frac{((xA)(x)-\frac{B}{u}(x))(uA)(y)-((xA)(y)-\frac{B}{u}(x))(uA)(y)}{x-y} \\
+     &= \frac{xA(x)uA(y)-B(x)A(y)-yA(y)uA(x)+B(y)A(x)}{x-y} \\
+     &= \frac{xA(x)uA(y)-yA(y)uA(x)}{x-y}+\frac{B(y)A(x)-B(x)A(y)}{x-y} \\
+     &= \frac{u(x-y)A(x)A(y)}{x-y}+\frac{A(x)B(y)-A(y)B(x)}{x-y} \\
+     &= uA(x)A(y)+\delta_{A,B}(x,y).
+\end{align*}
+%
+We can now look at the coefficients that define the Bézout matrix. Since we also know that A is a polynomial, we can write an explicit expression of \(A(x)A(y)\). We then have
+%
+\begin{align*}
+  \sum_{0\leq p,q \leq n+1}b_{p,q}x^{p-1}y^{q-1}  
+    &= \delta_{xA-\frac{B}{u}, uA}(x,y) \\
+    &= uA(x)A(y)+\delta_{A,B}(x,y)\\
+    &= uA(x)A(y) + \sum_{0\leq p,q \leq n}c_{p,q}x^{p-1}y^{q-1} \\
+    &= u\sum_{0\leq p,q \leq n+1}a_{p,q}x^{p-1}y^{q-1} + \sum_{0\leq p,q \leq n}c_{p,q}x^{p-1}y^{q-1} \\
+    &= \sum_{0\leq p,q \leq n+1}(ua_{p,q}+c_{p,q})x^{p-1}y^{q-1}\,,
+\end{align*}
+%
+where we have set \(c_{n+1,n+1}=0\). \\
+Since \(a_{n+1,n+1}=1\) (because A is monic \footnote{ We proved this in \cref{Rm:N-sums work as expected}.}), this shows that the \((n+1,n+1)\)-entry in the Bézout matrix of the sum is equal to \(u\), i.e. \(b_{n+1,n+1}=ua_{n+1,n+1}-c_{n+1,n+1} = u\). Since \(u\) is a unit, we can use it to get rid of all other entries in the corresponding row and column, just like in linear algebra. This leaves us with a matrix of the form:
+%
+\begin{equation*}
+%
+\begin{bmatrix}
+    * & \dots & 0 \\
+    \vdots & \vdots & \vdots \\
+    0 & \dots & u
+\end{bmatrix} .
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% a_n matrix
+%\iffalse
+%\begin{bmatrix}
+%    * & \dots & a_{n,1} \\
+%    \vdots & \vdots & \vdots \\
+%    a_{1,n} & \dots & u
+%\end{bmatrix} 
+%\fi
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+\end{equation*}
+%
+These row and column operations corresponds to paths (homotopies) in \(\mathcal{S}_{n+1}(k)\). We can then split off \(\langle u \rangle \) from the matrix to get the direct sum
+%
+\begin{equation*}
+    \begin{bmatrix}
+        * & \dots & 0 \\
+        \vdots & \vdots & \vdots \\
+        0 & \dots & u
+    \end{bmatrix} 
+=
+    \begin{bmatrix}
+    * & \dots & * \\
+    \vdots & \vdots & \vdots \\
+    * & \dots & *
+\end{bmatrix} 
+%
+\oplus \langle u \rangle .
+%
+\end{equation*}
+We can change the remaining \(n\times n\) matrix \([c_{i,j}+a_{i,j}(u-a_{n+1,j})]_{i,j}\) with a homotopy to get the matrix \([c_{i,j}]_{i,j}\). Finally we have 
+%
+\begin{equation}
+%
+    \text{Béz}(\frac{x}{u}\oplus^{N}\frac{A}{B}) \sim 
+    \, \langle u \rangle \oplus \text{Béz}(\frac{A}{B}) =
+    \text{Béz}(\frac{x}{u})\oplus \text{Béz}(\frac{A}{B}).
+%
+\end{equation}
+%
+Note that we have flipped the sum here without showing that it commutes. We do this to more easily see that it respects the monoid structure. The proof of commutativity is done on the next page. \\
+This proves that we can factor out these simple functions from the homotopy decomposition of any function. The fact that \(\langle u \rangle =\text{Béz}(\frac{x}{u})\) will be shown in the next lemma. Thus we get:
+\begin{equation}\label{Eq:Bezout decomposition}
+%
+    \text{Béz}(f)=\text{Béz}(\frac{x}{u_1}\oplus^N \dots \oplus^n \frac{x}{u_n}) \sim \text{Béz}(\frac{x}{u_1})\oplus \dots \oplus \text{Béz}(\frac{x}{u_n}) .
+%
+\end{equation}
+%
+We wanted to show that the Béz functions respects the monoid structure for any two rational functions \(f=\frac{A}{B}, g = \frac{C}{D}\). This follows easily from what we have already done. 
+
+\begin{align*}
+     \text{Béz}(f\oplus^N g)
+     &= \text{Béz}(\frac{x}{u_1}\oplus^N \dots \oplus^n  \frac{x}{u_n}\oplus^N g) \\
+     &\sim \text{Béz}(\frac{x}{u_1})\oplus \dots \oplus  \text{Béz}(\frac{x}{u_n})\oplus \text{Béz}(g) \\
+     &\sim \text{Béz}(f)\oplus \text{Béz}(g).
+\end{align*}
+%
+Everything in the proof is as noted done up to homotopy. This is the same as doing the proof up to path connected components, which is exactly what we wanted to show. 
+\end{proof}
+%
+\end{lemma}
+%
+\begin{lemma}\label{lm:Bez surjection on naive path components}
+The Bézout function is surjective on naive path components. 
+%
+\begin{proof}
+As seen in \cref{Eq:Bezout decomposition} we can decompose the Bézout matrix of any rational function into simple bits. We now prove that the Bézout \(1 \times 1\) -matrix \(\text{Béz}(\frac{x}{u}) = \langle u \rangle \).
+%
+\begin{equation*}
+   \langle u\rangle _{1,1} = \delta_{x,u}(x,y) 
+   = \frac{x(x)u(y)-x(y)u(x)}{x-y} 
+   = \frac{xu-yu}{x-y}
+   = \frac{(x-y)u}{x-y} = u.
+\end{equation*}
+%
+Hence, using the previous lemma we get
+\begin{equation*}
+    \text{Béz}(f) \sim \langle u_1\rangle \oplus \dots \oplus \langle u_n\rangle  = \langle u_1, \dots, u_n\rangle .
+\end{equation*}
+%
+Since we can use any units we want from \(k^{\times}\), this together with lemma \ref{Lm:homotopy-lemma in F} proves that it is surjective. \\
+What we essentially are doing is choosing simple representatives of the naive homotopy classes, and mapping them to each other.
+\end{proof}
+%
+\end{lemma}
+%
+\begin{corollary}\label{cor:Bez is an iso}
+%
+\begin{equation*}
+    \displaystyle\coprod_{n\geq0}\pi^N_0 \text{Béz}_n:(\displaystyle\coprod_{n\geq 0}(\pi^N_0\mathcal{F}_n)(k),\oplus^N)\longrightarrow (\displaystyle\coprod_{n\geq 0}(\pi^N_0 \mathcal{S}_n)(k),\oplus)
+\end{equation*}
+is an isomorphism of graded monoids.
+%
+\begin{proof}
+%
+The proof of injectivity is rather complicated and would require to introduce many more mathematical structures and operations. Therefore we refer to the proof by Cazanave in \cite[3.6]{Cazanave}. \\
+We have shown surjectivity and compatibility with the monoid structure, hence the Bézout function is an isomorphism.
+%
+\end{proof}
+%
+\end{corollary}
+
+%
+\begin{lemma}\label{lm:Sn(k) is commutative}
+The monoid \((\displaystyle\coprod_{n\geq 0}(\pi^N_0 \mathcal{S}_n)(k),\oplus)\) is commutative.
+%
+\begin{proof}
+%
+Take two symmetric matrices \(V, W\) with size \(n\times n\) and \(m \times m\) respectively. The sum \(V\oplus W\) is the block diagonal \((n+m)\times (n+m)\)-matrix with \(V\) as its first block and \(W\) as its second. This is of course again symmetric. By \ref{Lm:homotopy-lemma in S} we can find a diagonal matrix homotopic to this matrix, say \(\langle a_1, \dots ,a_{n}, b_1, \dots ,b_{m}\rangle \), where the units on the diagonal correspond to the units we get for both matrices by \ref{Lm:homotopy-lemma in S}. We can then use \(n+m\) row operations to make this the \((n+m)\times (n+m)\)-matrix \(\langle b_1, \dots , b_{m}, a_1, \dots , a_{n}\rangle \). As we know, row operations just correspond to paths, or homotopies, and thus they lie in the same class in \(\mathcal{S}_n(k)\). This rearranged matrix will be homotopic again to the matrix with \(W\) as its first block and \(V\) as its second.  Hence up to homotopy:
+%
+\begin{equation*}
+    V\oplus W = W\oplus V.
+\end{equation*}
+%
+\end{proof}
+%
+\end{lemma}
+%
+\begin{proof}(of \cref{thm:Main-theorem})\label{pf:proof of main thm}
+By \ref{lm:Sn(k) is commutative} we know that \((\displaystyle\coprod_{n\geq 0}(\pi^N_0 \mathcal{S}_n)(k),\oplus)\) is a commutative monoid. By \ref{cor:htpyclasses split degreewise}, \ref{cor:connected components is homotopy classes} and \cref{cor:Bez is an iso} we have a sequence of isomorphisms 
+%
+\begin{equation*}
+%
+    \displaystyle\coprod_{n\geq 0}(\pi^N_0 \mathcal{S}_n)(k) \cong \displaystyle\coprod_{n\geq 0}(\pi_0^N\mathcal{F}_n)(k) \cong  \displaystyle\coprod_{n\geq 0}[\mathbb{P}^1,\mathbb{P}^1]^N_n
+    = [\mathbb{P}^1,\mathbb{P}^1]^N \,.
+%
+\end{equation*}
+%
+\end{proof}
+%
+Thus we have shown what we intended in the thesis, that the naive homotopy classes of k-scheme endomorphisms of the projective line admits a commutative monoid structure. 
+%
+

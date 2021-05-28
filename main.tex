@@ -1,0 +1,111 @@
+\documentclass[12pt]{amsbook}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[english]{babel}
+\usepackage{amsthm}
+\usepackage{mathtools}
+\usepackage{tikz-cd}
+\usepackage[margin=1.4in]{geometry}
+%\usepackage[nottoc]{tocbibind}
+\usepackage{faktor}
+\usepackage{cleveref}
+\usepackage{helvet}
+%\usepackage{titlesec}
+%\usepackage{lipsum}
+
+%\titleformat{\chapter}[display]
+  %{\normalfont\bfseries}{}{0pt}{\Large}
+
+
+% For shifting text a bit to compensate for binding
+%\usepackage[a4paper,width=150mm,top=25mm,bottom=25mm,bindingoffset=6mm]{geometry}
+
+
+\newcommand\phtpy{\stackrel{\mathclap{\normalfont\mbox{\small{p}}}}{\sim}}
+\newcommand\htpy{\mathrel{\stackrel{\makebox[0pt]{\mbox{\normalfont\tiny p}}}{\sim}}}
+
+\title{The naive homotopyclasses of k-scheme endomorphisms of \(\mathbb{P}^1\) admits a commutative monoid structure}
+\author{Torgeir Aambø}
+\date{January 2019}
+
+\theoremstyle{definition}
+
+\newtheorem*{theorem*}{Theorem}
+\newtheorem*{lemma*}{Lemma}
+\newtheorem*{corollary*}{Corollary}
+\newtheorem*{definition*}{Definition}
+\newtheorem*{remark*}{Remark}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{example}{Example}[section]
+\newtheorem{construction}{Construction}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem{definition}{Definition}[section]
+\newtheorem{remark}{Remark}[section]
+
+\usepackage{nomencl}
+\makenomenclature
+\renewcommand{\nomname}{List of Symbols}
+\setlength{\nomlabelwidth}{2.5cm}
+
+
+
+\begin{document}
+
+
+\newcommand{\HRule}{\rule{\linewidth}{1mm}}
+
+\vspace*{\stretch{1}}
+\noindent\HRule
+\begin{center}
+  \huge
+  \noindent A naive homotopy theory for schemes\\ [7mm]
+  %\noindent The naive homotopy classes of k-scheme endomorphisms of \(\mathbb{P}^1\) admits a commutative monoid structure \\ [7mm]
+  \large
+  \noindent\emph{Torgeir Aambø}
+\end{center}
+\noindent\HRule
+\vspace*{\stretch{2}}
+\begin{center}
+\Large\textsc{Institutt for matematiske fag --- NTNU 2019}
+\end{center}
+
+
+
+\nomenclature[1]{$\longrightarrow$}{An arrow}
+\nomenclature[2]{\(\htpy\)}{Pointed naive homotopy}
+\nomenclature[3]{\(\cong\)}{Isomorphism (isomorphic)}
+\nomenclature[4]{\(R^{\times}\)}{The set of units in \(R\)}
+\nomenclature[5]{UFD}{Unique factorization domain}
+\nomenclature[6]{\([a_{i,j}]_{i,j}\)}{Matrix with \(a_{i,j}\) at the \(i,j\)-th entry}
+\nomenclature[7]{\(X \times Y\)}{The cartesian product of X and Y}
+
+\nomenclature[8]{$A \coprod B$}{Disjoint union of $A$ and $B$}
+\nomenclature[9]{\(\displaystyle \coprod_{i=0}^n A_n\)}{Disjoint union \(A_1 \coprod A_2 \coprod \dots  \coprod A_n\)} 
+
+%\maketitle 
+
+\frontmatter
+
+\include{tex/Abstract}
+\include{tex/Acknowledgements}
+
+
+\tableofcontents
+
+\include{tex/Introduction}
+%\printnomenclature
+%\include{Nomenclature} %DOES NOT WORK ATM
+\mainmatter
+\include{tex/Chapter1}
+\include{tex/Chapter2}
+%\include{Chapter3}%NOT PART OF THESIS
+\appendix
+\include{tex/AppendixA}
+%\include{AppendixB}
+\backmatter
+\include{tex/Bibliography} %wohoo works now!
+
+\end{document}

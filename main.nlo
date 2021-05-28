@@ -1,0 +1,9 @@
+\nomenclatureentry{1$\longrightarrow$@[{$\longrightarrow$}]\begingroup An arrow\nomeqref {0}|nompageref}{1}
+\nomenclatureentry{2\(\htpy\)@[{\(\htpy\)}]\begingroup Pointed naive homotopy\nomeqref {0}|nompageref}{1}
+\nomenclatureentry{3\(\cong\)@[{\(\cong\)}]\begingroup Isomorphism (isomorphic)\nomeqref {0}|nompageref}{1}
+\nomenclatureentry{4\(R^{\times}\)@[{\(R^{\times}\)}]\begingroup The set of units in \(R\)\nomeqref {0}|nompageref}{1}
+\nomenclatureentry{5UFD@[{UFD}]\begingroup Unique factorization domain\nomeqref {0}|nompageref}{1}
+\nomenclatureentry{6\([a_{i,j}]_{i,j}\)@[{\([a_{i,j}]_{i,j}\)}]\begingroup Matrix with \(a_{i,j}\) at the \(i,j\)-th entry\nomeqref {0}|nompageref}{1}
+\nomenclatureentry{7\(X \times Y\)@[{\(X \times Y\)}]\begingroup The cartesian product of X and Y\nomeqref {0}|nompageref}{1}
+\nomenclatureentry{8$A \coprod B$@[{$A \coprod B$}]\begingroup Disjoint union of $A$ and $B$\nomeqref {0}|nompageref}{1}
+\nomenclatureentry{9\(\displaystyle \coprod_{i=0}^n A_n\)@[{\(\displaystyle \coprod_{i=0}^n A_n\)}]\begingroup Disjoint union \(A_1 \coprod A_2 \coprod \dots  \coprod A_n\)\nomeqref {0}|nompageref}{1}
